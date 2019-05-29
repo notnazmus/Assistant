@@ -1,33 +1,31 @@
 package scenes.controllers;
 
-import events.EventHandler;
-import events.reminders.CreateEvent;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
+
+
+import javafx.collections.FXCollections;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
-import search.GoogleSearch;
 
 import java.io.IOException;
 
+
 public class Controller {
 
-    public Label display;
-    public AnchorPane innerPane;
-    public ScrollPane scrollPane;
-    public TextField textField;
-    public Label queryDisplay;
-    public EventHandler eventHandler = new EventHandler();
+    public ChoiceBox<String> requestBox;
+    public TextField query;
+
+
+    private String[] str = {"Google Search", "Music Search", "Video Search", "Events" };
+
+
+
+
 
 
     public void submit() throws IOException
     {
-        display.setText("");
-
-        eventHandler.eventSelection(textField.getText());
-        display.setText(eventHandler.getSearchResult());
-        queryDisplay.setText("Search: "+eventHandler.getSearchQuery());
-        textField.setText("");
+        if (requestBox.getValue() != null)
+            System.out.println(requestBox.getValue()+": "+query.getText());
     }
 
 
@@ -35,12 +33,8 @@ public class Controller {
 
     public void initialize()
     {
+        requestBox.setItems(FXCollections.observableArrayList(str));
 
-        display.setText("");
-        display.setWrapText(true);
-        queryDisplay.setWrapText(true);
-        display.setMaxWidth(innerPane.getPrefWidth()-15);
-        display.setPrefHeight(-1.0);
     }
 
 

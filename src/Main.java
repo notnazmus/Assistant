@@ -5,14 +5,14 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
-public class Main extends Application {
+public class  Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("scenes/main.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("scenes/home.fxml"));
         primaryStage.setTitle("Personal Assistant");
         primaryStage.getIcons().add(new Image( ("img/icon.png")));
-        primaryStage.setScene(new Scene(root, 900, 600));
+        primaryStage.setScene(new Scene(root, 700, 500));
         primaryStage.show();
     }
 

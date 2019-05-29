@@ -1,4 +1,4 @@
-package search;
+package events.search;
 import javafx.scene.image.Image;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -61,6 +61,10 @@ public class GoogleSearch {
         if (answer != null)
             return answer;
 
+        answer = locationSearch(doc);
+        if (answer != null)
+            return answer;
+
         answer =  getLinks(doc);
 
         return answer;
@@ -97,6 +101,21 @@ public class GoogleSearch {
             answer = null;
 
         return  answer;
+    }
+
+
+    public static String locationSearch(Document document)
+    {
+        String answer;
+        Elements ibk = document.select("div.ibk");
+        if (ibk.size() > 0)
+        {
+            answer = ibk.get(0).text();
+        } else
+        {
+            answer = null;
+        }
+        return answer;
     }
 
     public static String searchTwo(Document document)
